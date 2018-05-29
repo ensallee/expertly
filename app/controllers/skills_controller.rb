@@ -7,9 +7,11 @@ class SkillsController < ApplicationController
 
   def new
     @skill = Skill.new
+    @difficulties = ["beginner", "intermediate", "advanced", "expert"]
   end
 
   def create
+    byebug
     @skill = Skill.create(skills_params)
     if @skill.valid?
       redirect_to @skill
@@ -40,7 +42,7 @@ class SkillsController < ApplicationController
   private
 
   def skills_params
-    params.require(:skills).permit(:name, :description, :category_id, :difficulty_level)
+    params.require(:skill).permit(:name, :description, :category_id, :difficulty_level)
   end
 
   def find_skill

@@ -1,0 +1,10 @@
+<h1>Create a New Skill:</h1>
+<%=form_for @skill do |f|%>
+  <%=f.label :name%>
+  <%=f.text_field :name%><br>
+  <%=f.label :description%>
+  <%=f.text_area :description%><br>
+  <%=f.label "Select Difficulty Level:" %>
+  <%=f.select :difficulty_level, @difficulties%><br>
+  <%=f.submit%>
+<%end %>
