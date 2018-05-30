@@ -1,0 +1,12 @@
+<h1><%= @skill.name_and_category %></h1>
+<h2><%= @skill.description %></h2>
+
+
+<ul>
+
+
+<% @skill.user_skills.each do |us| %>
+  <li><strong><%= us.user.name %></strong> | <em><%= us.description %></em> || <% if current_user.student == true %> <% flash[:user_skill] = us.id %> <%=link_to "Take this Course", new_course_path %> <% end %></li>
+<% end %>
+
+</ul>

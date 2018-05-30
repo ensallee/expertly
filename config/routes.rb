@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :skills
+  resources :user_skills
+  resources :courses
 
   resources :users, only: [:index, :show, :create, :edit, :update]
 
