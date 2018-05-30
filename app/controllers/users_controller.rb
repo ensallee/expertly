@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @courses = @user.courses 
+    @courses = @user.courses
   end
 
   def new
@@ -35,6 +35,7 @@ class UsersController < ApplicationController
 
   def teacher_edit
     @user = User.find(params[:id])
+    @categories = Category.all
     if current_user != @user
       redirect_to current_user
     end
@@ -44,6 +45,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+
+    if params[:user][:skills]
+      skill = Skill.find_or_create_by(name: params[:user][:skills][:name], category_id: params[:user][:skills][:category_id])
+      UserSkill.create(user: @user, skill: skill, description: params[:user][:user_skills][:description])
+    end
+
     if @user.valid?
       redirect_to @user
     else
