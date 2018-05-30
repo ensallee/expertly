@@ -19,5 +19,9 @@
   <%= f.password_field :password %><br>
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %><br>
+  <%= f.label :teacher %>
+  <%= f.check_box :teacher %>
+  <%= f.label :student %>
+  <%= f.check_box :student %> <br>
   <%= f.submit "Sign Up" %>
 <% end %>

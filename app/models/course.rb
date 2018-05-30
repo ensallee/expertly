@@ -2,9 +2,17 @@ class Course < ApplicationRecord
   belongs_to :user
   belongs_to :user_skill
 
-  def teacher
-    self.user_skill.teacher
-  end
+
+  ##test
+
+  has_one :skill, through: :user_skill
+  has_one :teacher, through: :user_skill, source: :user
+  has_one :description, through: :user_skill, source: :description
+
+
+  # def teacher
+  #   self.user_skill.teacher
+  # end
 
   def description
     self.user_skill.description
