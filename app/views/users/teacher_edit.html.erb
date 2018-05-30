@@ -8,5 +8,16 @@
         <%= skill.label %>
       </div>
     <% end %>
+    <p>Add a New Skill:</p>
+      <%=f.fields_for :skills, @user.skills.build do |skills_fields|%>
+      <%=skills_fields.label :name%>
+      <%=skills_fields.text_field :name%>
+      <%=skills_fields.label :category_id%>
+      <%=skills_fields.collection_select :category_id, @categories, :id, :name%>
+    <%end%><br>
+      <%=f.fields_for :user_skills, @user.user_skills.build do |user_skills_fields|%>
+      <%=user_skills_fields.label :description%>
+      <%=user_skills_fields.text_area :description%>
+    <%end%>
     <%= f.submit "Update Profile" %>
   <% end %>
