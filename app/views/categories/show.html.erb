@@ -1,0 +1,6 @@
+<h1> <%= @category.name %> </h1><br>
+<ul>
+<% @category.skills.each do |skill| %>
+<li><%= link_to skill.name, skill %></li>
+<% end %>
+</ul>
