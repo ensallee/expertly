@@ -1,0 +1,8 @@
+<h3><%= @userskill.user.name %></h3>
+<h4><%= @userskill.skill.name %></h4><br>
+
+<%= form_for @userskill do |f| %>
+  <%= f.label :description %>
+  <%= f.text_area :description, class: "form-control", style: "max-width: 500px;" %><br>
+  <%= f.submit "Update Skill", class: "btn btn-primary" %>
+<% end %>

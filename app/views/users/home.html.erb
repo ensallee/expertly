@@ -1,73 +1,10 @@
-<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-      <% if flash[:errors] %>
-        <ul>
-          <% flash[:errors].each do |e| %>
-            <li><%= e %></li>
-          <% end %>
-        </ul>
-      <% end %>
 
-      <%= form_for @user do |f| %>
-        <%= f.label :username %>
-        <%= f.text_field :username %>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-      </div>
-      <% end %>
-    </div>
+<div style="padding: 80px 0px 0px 0px;">
+<div class="jumbotron jumbotron-fluid" style="text-align: center; background-color: rgba(233, 236, 239, 0.9);">
+  <div class="container">
+    <h1 class="display-4">Welcome to Expertly</h1>
+    <p class="lead">A Rails app that will broaden your horizons.</p>
   </div>
 </div>
-
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-      <% if flash[:errors] %>
-        <ul>
-          <% flash[:errors].each do |e| %>
-            <li><%= e %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <%= form_tag sessions_path do %>
-        <%= label_tag "Username" %>
-        <%= text_field_tag :username %>
-        <%= label_tag "Password" %>
-        <%= password_field_tag :password %>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Login</button>
-      </div>
-      <% end %>
-    </div>
-  </div>
 </div>

@@ -1,26 +1,59 @@
-<h1><%=@user.name%></h1>
-<h2><%= @user.username %></h2>
+<h2><%=@user.name%> | <%= @user.username %></h2>
 
 <% if current_user == @user %>
-  <p>THIS IS YOUR ACCOUNT PAGE</p>
+  <p>YOU ARE SO LOGGED IN OMG</p>
 <% end %>
 
 <%if @user.teacher == true%>
-<h3><%= @user.name %>'s Skills:</h3>
+<h3>Courses <%= @user.name %> is Teaching:</h3>
 <ul>
-  <%@user.skills.sort_by { |s| s.category.name}.each do |s|%>
-    <li><%=s.name_and_category%></li>
+  <%@user.user_skills.sort_by { |uskill| uskill.skill.category.name}.each do |us|%>
+    <li><strong><%=us.skill.name_and_category%></strong><br>
+    <em><%= us.description %></em><br>
+    <% if @user == current_user %>
+    <%= link_to "Edit This Skill", edit_user_skill_path(us) %></li>
+    <% end %>
   <%end %>
 </ul>
-
-  <%=link_to "Edit Your Teacher Profile", teacher_edit_path(@user)%><br></br>
-<%end%>
-<%if @user.student == true%>
-<h3><%= @user.name %>'s Courses:</h3>
-<ul>
-  <% @courses.each do |course| %>
-  <li>You are currently enrolled in: <%=course.user_skill.skill.name%> with: <%= link_to course.teacher.name, course.teacher%></li>
+  <%if @user == current_user %>
+    <%=link_to "Edit Your Teacher Profile", teacher_edit_path(@user), class: "btn btn-success"%><br></br>
   <% end %>
-</ul>
-  <%=link_to "Edit Your Student Profile", edit_user_path(@user)%>
+<%end%>
+<br>
+
+<%if @user.student == true %>
+<h3>Courses <%= @user.name %> is Taking:</h3>
+
+  <%if @user.courses.length == 0 %>
+
+    <%if @user == current_user %>
+      You are not currently enrolled in any courses.<br>
+    <% else %>
+      <%= @user.name %> is not currently enrolled in any courses.<br>
+    <% end %>
+
+  <% else %>
+
+    <%if @user == current_user %>
+      <ul>
+        <% @courses.each do |course| %>
+        <li>You are currently enrolled in <%= link_to course.user_skill.skill.name, course.user_skill %> with <%= link_to course.teacher.name, course.teacher%></li>
+        <% end %>
+      </ul>
+
+      <% else %>
+      <ul>
+        <% @courses.each do |course| %>
+        <li><%= @user.name %> is currently enrolled in <%= link_to course.user_skill.skill.name, course.user_skill %> with <%= link_to course.teacher.name, course.teacher%></li>
+        <% end %>
+      </ul>
+      <% end %>
+    <% end %>
+
+    <%if @user == current_user %>
+      Check out the <%= link_to "course catalog", user_skills_path %> for available courses to take.<br><br>
+      <%=link_to "Edit Your Student Profile", edit_user_path(@user), class: "btn btn-success"%>
+
+    <% end %>
+
 <%end%>

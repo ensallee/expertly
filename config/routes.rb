@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :create, :edit, :update]
 
-  get "home", to: "users#home", as: "home"
+  get "/", to: "users#home", as: "home"
   get "signup", to: "users#new", as: "signup"
   get "login", to: "sessions#new", as: "login"
   post "sessions", to: "sessions#create", as: "sessions"

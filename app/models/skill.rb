@@ -7,4 +7,5 @@ class Skill < ApplicationRecord
   def name_and_category
     "#{self.category.name} | #{self.name}"
   end
+  
 end

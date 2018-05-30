@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :authorized, only: [:edit]
 
   def home
-    @users = User.all
     @user = User.new
+    render layout: 'home'
   end
 
   def show
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render layout: 'home'
   end
 
   def create
