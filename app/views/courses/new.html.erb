@@ -1,0 +1,5 @@
+<%= form_for @course do |f| %>
+<%= f.hidden_field :user_id, value: @user.id %>
+<%= f.hidden_field :user_skill_id, value: flash[:user_skill]  %>
+<%= f.submit "Confirm Enrollment" %>
+<% end %>

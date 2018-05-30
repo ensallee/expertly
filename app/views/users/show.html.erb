@@ -5,16 +5,22 @@
   <p>THIS IS YOUR ACCOUNT PAGE</p>
 <% end %>
 
-<h3>Your Skills:</h3>
+<%if @user.teacher == true%>
+<h3><%= @user.name %>'s Skills:</h3>
 <ul>
   <%@user.skills.sort_by { |s| s.category.name}.each do |s|%>
     <li><%=s.name_and_category%></li>
   <%end %>
 </ul>
 
-<%if @user.teacher == true%>
   <%=link_to "Edit Your Teacher Profile", teacher_edit_path(@user)%><br></br>
 <%end%>
 <%if @user.student == true%>
+<h3><%= @user.name %>'s Courses:</h3>
+<ul>
+  <% @courses.each do |course| %>
+  <li>You are currently enrolled in: <%=course.user_skill.skill.name%> with: <%= link_to course.teacher.name, course.teacher%></li>
+  <% end %>
+</ul>
   <%=link_to "Edit Your Student Profile", edit_user_path(@user)%>
 <%end%>
