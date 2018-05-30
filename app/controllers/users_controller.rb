@@ -30,14 +30,21 @@ class UsersController < ApplicationController
     if current_user != @user
       redirect_to current_user
     end
-    @skills = Skill.all
+  end
+
+  def teacher_edit
+    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to current_user
+    end
+    @skills = Skill.all.sort_by {|s| s.category.name}
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_edit_params)
+    @user.update(user_params)
     if @user.valid?
-      redirect_to books_path
+      redirect_to @user
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to edit_user_path(@user)
@@ -47,10 +54,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :name, :location, :teacher, :student)
-  end
-
-  def user_edit_params
-    params.require(:user).permit(:username, book_ids: [])
+    params.require(:user).permit(:username, :password, :password_confirmation, :name, :location, :teacher, :student, skill_ids: [])
   end
 end

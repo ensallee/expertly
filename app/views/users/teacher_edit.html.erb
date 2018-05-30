@@ -1,0 +1,12 @@
+<h1>Edit Your Teacher Profile:</h1>
+  <%= form_for @user do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.collection_check_boxes :skill_ids, @skills, :id, :name_and_category do |skill| %>
+      <div>
+        <%= skill.check_box %>
+        <%= skill.label %>
+      </div>
+    <% end %>
+    <%= f.submit "Update Profile" %>
+  <% end %>
