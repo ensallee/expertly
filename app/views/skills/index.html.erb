@@ -1,1 +1,8 @@
 <h1>Test</h1>
+
+
+<ul>
+<% @skills.each do |skill| %>
+  <li><%= link_to skill.name_and_category, skill %></li>
+<% end %>
+</ul>
