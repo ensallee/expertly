@@ -1,0 +1,7 @@
+<h1><%= @userskill.skill.name %></h1>
+<h3><%= @userskill.teacher.name %></h3>
+<p><%= @userskill.description %></p>
+
+<% if !logged_in? %>
+  <%=link_to "Login to take this course and many more", login_path %>
+<% end %>

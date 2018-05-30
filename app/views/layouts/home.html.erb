@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expertly</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+          min-height: 100vh;
+      }
+      .flex-fill {
+         flex: 1 1 auto;
+      }
+      .bg {
+          background-image: url("https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3ad3ef89775ee46b86723c2fa64b6805&auto=format&fit=crop&w=3300&q=80");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <body class="d-flex flex-column">
+    <nav class="navbar navbar-expand navbar-light bg-light flex-column flex-sm-row">
+        <a class="navbar-brand mr-0 mr-md-2" href="/">Expertly</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+          </div>
+        </div>
+        <a class="btn btn-outline-primary" href="/login" role="button">
+            Login
+        </a>
+        <div style="padding: 0px 10px;">
+        <a class="btn btn-outline-success" href="/signup" role="button">
+            Sign Up
+        </a>
+        </div>
+    </nav>
+      <div class="main-page d-flex flex-column flex-fill">
+      <div class="bg flex-fill">
+      <div class="data" style="padding: 25px 25px;">
+        <%= yield %>
+      </div>
+      </div>
+  </body>
+</html>

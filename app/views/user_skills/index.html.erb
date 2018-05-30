@@ -1,0 +1,7 @@
+<h1>All Available Courses</h1>
+
+<ul>
+<% @userskills.each do |us| %>
+<li> <%= link_to us.skill.category.name, category_path(us.skill.category) %> | <strong>Learn <%= link_to us.skill.name, user_skill_path(us) %> with: <%= link_to us.user.name, user_path(us.user) %> </strong><br> <p><em> <%= us.description %> </em></p> </li>
+<% end %>
+</ul>
