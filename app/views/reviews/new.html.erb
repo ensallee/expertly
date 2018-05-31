@@ -1,0 +1,20 @@
+<%@user = User.find(flash[:teacher][0])%>
+<h1>Rate <%=@user.name%></h1>
+<h3>You took <%=flash[:teacher][1]%> with <%=@user.name%></h3>
+
+<%if flash[:errors]%>
+  <ul>
+    <%flash[:errors].each do |e|%>
+      <li><%=e%></li>
+    <%end %>
+  </ul>
+<%end %>
+
+<%=form_for @review do |f|%>
+  <%=f.hidden_field :user_id, value: flash[:teacher][0]%>
+  <%=f.label "Rate Your Instructor:" %>
+  <%=f.select :rating, @ratings%><br>
+  <%=f.label :content, "Write a Review:"%>
+  <%=f.text_area :content%><br>
+  <%=f.submit%>
+<%end%>

@@ -9,5 +9,14 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
 
+  def average_rating
+    array = []
+    self.reviews.each do |r|
+      array.push(r.rating)
+    end
+
+    array.inject { |sum, el| sum + el }.to_f / array.size
+  end
+
 
 end
