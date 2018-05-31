@@ -2,10 +2,39 @@
   <% if current_user == @user %>
     <span class="badge badge-success" style="font-size: 0.4em;"> Your Profile </span>
   <% end %>
-</h2>
+</h2><hr><br>
 
 <%if @user.teacher == true%>
 <h3>Courses <%= @user.name %> is Teaching:</h3>
+
+<div class="row">
+
+<%@user.user_skills.sort_by { |uskill| uskill.skill.category.name}.each do |us|%>
+<div class="col-sm-3" style="margin-bottom: 1.2rem;">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%=us.skill.name%></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%=us.skill.category.name%></h6>
+      <% if us.description %>
+        <p class="card-text" style="min-height: 5rem;"><%= us.description %></p>
+      <% end %>
+      <% if @user == current_user %>
+          <a href="<%=edit_user_skill_path(us)%>" class="card-link">Edit This Skill</a>
+          <div class="card-link">
+          <%= form_tag user_skill_path(us), method: :delete do %>
+            <%= submit_tag "Delete This Skill" %>
+          <% end %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%end%>
+
+</div>
+
+<% if 1==0 %>
+
 <ul>
   <%@user.user_skills.sort_by { |uskill| uskill.skill.category.name}.each do |us|%>
     <li><strong><%=us.skill.name_and_category%></strong><br>
@@ -24,6 +53,7 @@
     <% end %>
   <%end %>
 </ul>
+<% end %>
   <%if @user == current_user %>
     <%=link_to "Edit Your Teacher Profile", teacher_edit_path(@user), class: "btn btn-success"%><br></br>
   <% end %>
