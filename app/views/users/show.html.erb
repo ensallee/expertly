@@ -9,9 +9,18 @@
 <ul>
   <%@user.user_skills.sort_by { |uskill| uskill.skill.category.name}.each do |us|%>
     <li><strong><%=us.skill.name_and_category%></strong><br>
+      <% if us.description %>
     <em><%= us.description %></em><br>
+    <% end %>
     <% if @user == current_user %>
-    <%= link_to "Edit This Skill", edit_user_skill_path(us) %></li>
+    <%= link_to "Edit This Skill", edit_user_skill_path(us) %> |
+
+
+    <%= form_tag user_skill_path(us), method: :delete do %>
+      <%= submit_tag "Delete This Skill" %>
+    <% end %>
+
+  </li>
     <% end %>
   <%end %>
 </ul>
