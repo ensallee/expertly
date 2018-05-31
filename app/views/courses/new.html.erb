@@ -3,3 +3,5 @@
 <%= f.hidden_field :user_skill_id, value: flash[:user_skill]  %>
 <%= f.submit "Confirm Enrollment" %>
 <% end %>
+
+<%= link_to "Cancel", skill_path(UserSkill.find(flash[:user_skill]).skill) %>
