@@ -7,8 +7,8 @@
 
 <% else %>
   <% if current_user.student == true %>
-  || <% flash[:user_skill] = @userskill.id %> <%=link_to "Take this Course", new_course_path %>
+    <% flash[:user_skill] = @userskill.id %> <%=link_to "Take this Course", new_course_path, class: "btn btn-dark" %>
   <% else %>
-    <%=link_to "Learn More About This Course", user_skill_path(us) %>
+    <%=link_to "Learn More About This Course", user_skill_path(us), class: "btn btn-dark" %>
   <% end %>
 <% end %>

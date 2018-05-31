@@ -30,6 +30,16 @@
 <%end%>
 <br>
 
+<%if @user.teacher == true && @user.reviews.length > 0%>
+<h4>Reviews for <%=@user.name%></h4>
+<ul>
+  <%@user.reviews.each do |r|%>
+    <li>Rating: <%=r.rating%> || <em>"<%=r.content%>"</em></li>
+  <%end %>
+</ul>
+<p>Average Rating for <%=@user.name%>: <%=@user.average_rating%></p>
+<%end%>
+
 <%if @user.student == true %>
 <h3>Courses <%= @user.name %> is Taking:</h3>
 
@@ -47,7 +57,8 @@
       <ul>
         <% @courses.each do |course| %>
         <li>You are currently enrolled in <%= link_to course.user_skill.skill.name, course.user_skill %> with <%= link_to course.teacher.name, course.teacher%> || <%= form_tag course_path(course), method: :delete do %>
-            <%= submit_tag "Unenroll from this Course" %>
+            <%= submit_tag "Unenroll from this Course" %> <%flash[:teacher] = [course.teacher.id, course.user_skill.skill.name]%>
+            <%=link_to "Add a Review for #{course.teacher.name}", new_review_path %>
           <% end %></li><br>
         <% end %>
       </ul>
