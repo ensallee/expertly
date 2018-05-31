@@ -1,6 +1,27 @@
-<h1>All Categories</h1><br>
+<h1>All Subjects</h1><br>
+
+<div class="row">
+
+<% @categories.each do |cat| %>
+  <div class="col-sm-3" style="margin-bottom: 1rem;">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<%=cat.img  %>" height="191px">
+      <div class="card-body">
+
+        <h5 class="card-title"><%= cat.name %></h5>
+        <a href="/categories/<%=cat.id%>" class="btn btn-primary">See Available Topics</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>
+
+<% if 1 ==0 %>
 <ul>
 <% @categories.each do |category| %>
 <li><%= link_to category.name, category %></li>
 <% end %>
 </ul>
+
+<% end %>

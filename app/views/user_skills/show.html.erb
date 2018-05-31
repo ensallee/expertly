@@ -4,4 +4,11 @@
 
 <% if !logged_in? %>
   <%=link_to "Login to take this course and many more", login_path %>
+
+<% else %>
+  <% if current_user.student == true %>
+  || <% flash[:user_skill] = @userskill.id %> <%=link_to "Take this Course", new_course_path %>
+  <% else %>
+    <%=link_to "Learn More About This Course", user_skill_path(us) %>
+  <% end %>
 <% end %>

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authorized, only: [:edit]
 
   def home
-    @user = User.new
+    @categories = Category.all
     render layout: 'home'
   end
 

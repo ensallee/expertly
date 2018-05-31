@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
   belongs_to :user
   belongs_to :user_skill
+  validates_uniqueness_of :user_id, scope: :user_skill_id
 
 
   ##test

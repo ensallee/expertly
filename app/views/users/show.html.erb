@@ -1,8 +1,8 @@
-<h2><%=@user.name%> | <%= @user.username %></h2>
-
-<% if current_user == @user %>
-  <p>YOU ARE SO LOGGED IN OMG</p>
-<% end %>
+<h2><%=@user.name%> | <%= @user.username %>
+  <% if current_user == @user %>
+    <span class="badge badge-success" style="font-size: 0.4em;"> Your Profile </span>
+  <% end %>
+</h2>
 
 <%if @user.teacher == true%>
 <h3>Courses <%= @user.name %> is Teaching:</h3>
@@ -20,7 +20,7 @@
       <%= submit_tag "Delete This Skill" %>
     <% end %>
 
-  </li>
+  </li><br>
     <% end %>
   <%end %>
 </ul>
@@ -46,7 +46,9 @@
     <%if @user == current_user %>
       <ul>
         <% @courses.each do |course| %>
-        <li>You are currently enrolled in <%= link_to course.user_skill.skill.name, course.user_skill %> with <%= link_to course.teacher.name, course.teacher%></li>
+        <li>You are currently enrolled in <%= link_to course.user_skill.skill.name, course.user_skill %> with <%= link_to course.teacher.name, course.teacher%> || <%= form_tag course_path(course), method: :delete do %>
+            <%= submit_tag "Unenroll from this Course" %>
+          <% end %></li><br>
         <% end %>
       </ul>
 
