@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
 
-    if params[:user][:skills]
+    if !params[:user][:skills][:name].empty?
       skill = Skill.find_or_create_by(name: params[:user][:skills][:name], category_id: params[:user][:skills][:category_id])
       UserSkill.create(user: @user, skill: skill, description: params[:user][:user_skills][:description])
     end

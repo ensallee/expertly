@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2018_05_30_144106) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
+    t.text "description"
+    t.string "difficulty_level"
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,9 +49,9 @@ ActiveRecord::Schema.define(version: 2018_05_30_144106) do
   create_table "user_skills", force: :cascade do |t|
     t.integer "user_id"
     t.integer "skill_id"
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["skill_id"], name: "index_user_skills_on_skill_id"
     t.index ["user_id"], name: "index_user_skills_on_user_id"
   end
