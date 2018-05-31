@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :user_skills
   resources :courses
   resources :categories, only: [:index, :show]
+  resources :reviews, only: [:new, :create]
 
   resources :users, only: [:index, :show, :create, :edit, :update]
 
