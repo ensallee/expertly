@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to @user
+      if request.referrer == "http://localhost:3000/login"
+        redirect_to @user
+      else
+        redirect_to request.referrer
+      end
     else
       flash[:errors] = ["Cannot find user or verify password"]
       redirect_to login_path
