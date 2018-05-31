@@ -7,84 +7,106 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+          min-height: 100vh;
+      }
+      .flex-fill {
+         flex: 1 1 auto;
+      }
+      .bg {
+          background: linear-gradient(to bottom right, white, GhostWhite);
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+      }
+    </style>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="/categories">Expertly</a>
+      <form class="form-inline">
+        <% if logged_in? %>
+        <!-- Button trigger modal -->
+        <a class="btn btn-outline-secondary" href=" <%= user_path(current_user) %> ">
+        Your Profile
+      </a>
+      <div style="padding: 0px 10px;">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Logout
+        </button>
+      </div>
 
+       <% else %>
+       <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Login
+        </button>
 
-   <% if logged_in? %>
+        <% end %>
+      </form>
+    </nav>
+    <div class="main-page d-flex flex-column flex-fill">
+      <div class="bg flex-fill">
+        <div class="data" style="padding: 25px 25px;">
+          <%= yield %>
+        </div>
+    </div>
+  </body>
+</html>
 
-
-   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-Logout
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
- <div class="modal-header">
-   <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-   </button>
- </div>
- <div class="modal-body">
-   <%= link_to "Log Out", logout_path, method: :post %>
-
-
- </div>
-
-</div>
-</div>
-</div>
-
-
-
-
-
-   <% else %>
-
-
-   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-Login
-</button>
+<% if logged_in? %>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
- <div class="modal-header">
-   <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-   </button>
- </div>
- <div class="modal-body">
-   <%= form_tag sessions_path do %>
-     <%= label_tag "Username" %>
-     <%= text_field_tag :username %><br>
-     <%= label_tag "Password" %>
-     <%= password_field_tag :password %><br>
-     <%= submit_tag "Log In" %>
-   <% end %>
-
-   <%= link_to "Sign Up", signup_path %>
-
- </div>
-
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <%= link_to "Log Out", logout_path, method: :post %>
+     </div>
+    </div>
+  </div>
 </div>
-</div>
+
+<% else %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+       <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <%= form_tag sessions_path, method: :post do %>
+         <div class="form-group">
+           <%= label_tag "Username", nil, style: 'padding-right: 10px;' %>
+           <%= text_field_tag :username, nil, class: 'form-control'  %>
+         </div>
+         <div class="form-group" style='padding-top: 15px;'>
+           <%= label_tag "Password", nil, style: 'padding-right: 10px;'  %>
+           <%= password_field_tag :password, nil, class: 'form-control' %>
+         </div>
+         <div class="form-group" style='padding-top: 15px;'>
+           <%= submit_tag "Log In" %>
+         </div>
+       <% end %>
+       <hr>
+       <div><h4 style="text-align: center;"><span style="padding-right: 15px;">Don't have an account?</span><%= link_to "Sign Up", signup_path, class: "btn btn-success", style: "display: inline;" %></h4>
+       </div>
+     </div>
+    </div>
+  </div>
 </div>
 
 <% end %>
-
-
-
-
-
-    <%= yield %>
-  </body>
-</html>

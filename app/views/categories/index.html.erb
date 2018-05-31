@@ -3,9 +3,9 @@
 <div class="row">
 
 <% @categories.each do |cat| %>
-  <div class="col-sm-3" style="margin-bottom: 1rem;">
+  <div class="col-sm-3" style="margin-bottom: 1.2rem;">
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="<%=cat.img  %>" height="191px">
+      <img class="card-img-top" src="<%=cat.img%>" height="180px" style="object-fit: cover;">
       <div class="card-body">
 
         <h5 class="card-title"><%= cat.name %></h5>
