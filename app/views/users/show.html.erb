@@ -70,10 +70,10 @@
 <h4>Reviews for <%=@user.name%></h4>
 <ul>
   <%@user.reviews.each do |r|%>
-    <li>Rating: <%=r.rating%> || <em>"<%=r.content%>"</em></li>
+    <li>Rating: <span class="badge badge-info"><%=r.rating%></span> || <em>"<%=r.content%>"</em></li>
   <%end %>
 </ul>
-<p>Average Rating for <%=@user.name%>: <%=@user.average_rating%></p>
+<h6><strong>Average Rating for <%=@user.name%>: <span class="badge badge-info"><%=@user.average_rating%></span></strong></h6>
 <%end%>
 
 <br><hr><br>
@@ -101,10 +101,12 @@
 
     <% @courses.each do |course| %>
     <div class="col-sm-3" style="margin-bottom: 1.2rem;">
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 20rem;">
         <div class="card-body">
           <h5 class="card-title"><%= link_to course.user_skill.skill.name, course.user_skill %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= link_to course.teacher.name, course.teacher%></h6>
+          <p class="card-text" style="min-height: 3rem;"><%= course.user_skill.description %></p>
+
           <% if @user == current_user %>
               <div class="card-link" style="margin-bottom: 1.2rem;">
                 <div style="padding: 10px 5px 0px 5px;">
@@ -130,7 +132,7 @@
 
 
 
-
+<% if 1==0 %>
 
     <%if @user == current_user %>
       <ul>
@@ -152,8 +154,10 @@
       <% end %>
     <% end %>
 
+    <% end %>
+
     <%if @user == current_user %>
-      Check out the <%= link_to "course catalog", user_skills_path %> for available courses to take.<br><br>
+      Check out the <%= link_to "course catalog", categories_path %> for available courses to take.<br><br>
       <%=link_to "Edit Your Student Profile", edit_user_path(@user), class: "btn btn-success"%>
 
     <% end %>

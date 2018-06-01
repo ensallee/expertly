@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @user = current_user
-
   end
 
   def create

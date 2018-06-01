@@ -6,9 +6,9 @@
   </ul>
 <% end %>
 
-<h1>Edit Your Student Profile:</h1>
+<h1>Edit Your Username:</h1><br>
 <%=form_for @user do |f| %>
   <%= f.label :username %>
-  <%= f.text_field :username %><br>
-  <%= f.submit "Update Profile" %>
+  <%= f.text_field :username %><br><br>
+  <%= f.submit "Update Profile", class: "btn btn-success" %>
 <% end %>

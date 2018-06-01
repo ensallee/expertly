@@ -10,7 +10,6 @@ class Course < ApplicationRecord
   # has_one :teacher, through: :user_skill, source: :user
   # has_one :description, through: :user_skill, source: :description
 
-
   def teacher
     self.user_skill.teacher
   end

@@ -1,23 +1,24 @@
 <h1>Edit Your Teacher Profile:</h1>
   <%= form_for @user do |f| %>
     <%= f.label :username %>
-    <%= f.text_field :username %>
+    <%= f.text_field :username %><br><br>
+    <h4>Edit Your Existing Skills:</h4>
     <%= f.collection_check_boxes :skill_ids, @skills, :id, :name_and_category do |skill| %>
       <div>
         <%= skill.check_box %>
         <%= skill.label %>
       </div>
-    <% end %>
-    <p>Add a New Skill:</p>
+    <% end %><br>
+    <h4>Add a New Course:</h4>
       <%=f.fields_for :skills, @user.skills.build do |skills_fields|%>
       <%=skills_fields.label :name%>
-      <%=skills_fields.text_field :name%>
+      <%=skills_fields.text_field :name%><br>
       <%=skills_fields.label :category_id%>
       <%=skills_fields.collection_select :category_id, @categories, :id, :name%>
     <%end%><br>
       <%=f.fields_for :user_skills, @user.user_skills.build do |user_skills_fields|%>
       <%=user_skills_fields.label :description%>
       <%=user_skills_fields.text_area :description%>
-    <%end%>
-    <%= f.submit "Update Profile" %>
+    <%end%><br>
+    <%= f.submit "Update Profile", class: "btn btn-success" %>
   <% end %>

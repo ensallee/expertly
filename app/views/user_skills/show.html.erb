@@ -3,12 +3,14 @@
 <p><%= @userskill.description %></p>
 
 <% if !logged_in? %>
-  <%=link_to "Login to take this course and many more", login_path %>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Login to Enroll
+  </button>
 
 <% else %>
   <% if current_user.student == true %>
-    <% flash[:user_skill] = @userskill.id %> <%=link_to "Take this Course", new_course_path, class: "btn btn-dark" %>
+    <% flash[:user_skill] = @userskill.id %> <%=link_to "Take this Course", new_course_path, class: "btn btn-primary" %>
   <% else %>
-    <%=link_to "Learn More About This Course", user_skill_path(us), class: "btn btn-dark" %>
+    <%=link_to "Learn More About This Course", user_skill_path(us), class: "btn btn-primary" %>
   <% end %>
 <% end %>

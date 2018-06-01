@@ -7,12 +7,16 @@
   <li><strong><%= us.user.name %></strong> | <em><%= us.description %></em>
     <% if logged_in? %>
       <% if current_user.student == true %>
-      || <% flash[:user_skill] = us.id %> <%=link_to "Take this Course", new_course_path %>
+          <%= form_tag courses_path, method: :post do %>
+            <%= hidden_field_tag :'course[user_id]', current_user.id %>
+            <%= hidden_field_tag :'course[user_skill_id]', us.id %>
+          <%= submit_tag "Take this Course", class: "btn btn-success"%>
+        <% end %>
       <% end %>
     <% else %>
-      <%=link_to "Learn More About This Course", user_skill_path(us) %>
+      || <%=link_to "Learn More About This Course", user_skill_path(us), class: "btn btn-primary" %>
     <% end %>
-  </li>
+  </li><br>
 <% end %>
 
 </ul>
