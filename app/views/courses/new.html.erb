@@ -1,7 +1,16 @@
+
+<h2> <%= UserSkill.find(flash[:user_skill]).skill.name %></h2>
+<h4>Taught by <%= UserSkill.find(flash[:user_skill]).user.name %></h4>
+<hr>
+
+<h6>Course Summary: <%= UserSkill.find(flash[:user_skill]).description %></h6>
+<br>
+<br>
+
 <%= form_for @course do |f| %>
 <%= f.hidden_field :user_id, value: @user.id %>
 <%= f.hidden_field :user_skill_id, value: flash[:user_skill]  %>
-<%= f.submit "Confirm Enrollment" %>
+<%= f.submit "Confirm Enrollment", class: "btn btn-primary" %>
 <% end %>
 
-<%= link_to "Cancel", skill_path(UserSkill.find(flash[:user_skill]).skill) %>
+<%= link_to "Cancel", skill_path(UserSkill.find(flash[:user_skill]).skill), class: 'btn btn-dark'%>
