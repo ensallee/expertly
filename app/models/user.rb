@@ -15,7 +15,7 @@ class User < ApplicationRecord
       array.push(r.rating)
     end
 
-    array.inject { |sum, el| sum + el }.to_f / array.size
+    (array.inject { |sum, el| sum + el }.to_f / array.size).round(1)
   end
 
 
