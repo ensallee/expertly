@@ -10,7 +10,7 @@
       || <% flash[:user_skill] = us.id %> <%=link_to "Take this Course", new_course_path %>
       <% end %>
     <% else %>
-      <%=link_to "Learn More About This Course", user_skill_path(us) %>
+      || <%=link_to "Learn More About This Course", user_skill_path(us) %>
     <% end %>
   </li>
 <% end %>

@@ -5,7 +5,6 @@
 
 <h6>Course Summary: <%= UserSkill.find(flash[:user_skill]).description %></h6>
 <br>
-<br>
 
 <%= form_for @course do |f| %>
 <%= f.hidden_field :user_id, value: @user.id %>
@@ -13,4 +12,6 @@
 <%= f.submit "Confirm Enrollment", class: "btn btn-primary" %>
 <% end %>
 
+<div style="padding-top: 10px">
 <%= link_to "Cancel", skill_path(UserSkill.find(flash[:user_skill]).skill), class: 'btn btn-dark'%>
+</div>
