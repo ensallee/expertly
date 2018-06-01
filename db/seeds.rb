@@ -46,13 +46,56 @@ s14 = Skill.create(name: "Spanish", category: foreign_language)
 s15 = Skill.create(name: "Home Improvement", category: lifestyle)
 
 
+us1 = UserSkill.create(user: u1, skill: s1, description: "Study contemporary poets and write poetry in a workshop")
 
-UserSkill.create(user: u1, skill: s1, description: "Study contemporary poets and write poetry in a workshop")
-UserSkill.create(user: u3, skill: s2, description: "Learn Ruby on Rails, build an app like this exact website here.")
-UserSkill.create(user: u4, skill: s3, description: "Learn how to make nasty beats - very sick")
-UserSkill.create(user: u3, skill: s4, description: "Write some functions and vars and lots of semi-colons as many semi-colons as you can dream up bc you'll need all of them")
-UserSkill.create(user: u1, skill: s9, description: "Knit a scarf and other things!")
-UserSkill.create(user: u3, skill: s8, description: "Get your finances in order!")
-UserSkill.create(user: u4, skill: s2, description: "Were gonna go off the rails, on Rails!")
-UserSkill.create(user: u4, skill: s12, description: "Cells and stuff....")
+us2 = UserSkill.create(user: u3, skill: s2, description: "Learn Ruby on Rails so you too can build an app like this exact website here.")
+us17 = UserSkill.create(user: u4, skill: s2, description: "Were gonna go off the rails, on Rails!")
+
+us3 = UserSkill.create(user: u4, skill: s3, description: "Learn how to make nasty beats - very sick")
+
+us4 = UserSkill.create(user: u3, skill: s4, description: "Write some functions and vars and lots of semi-colons")
+UserSkill.create(user: u1, skill: s4, description: "Advanced Javascript - everything you need to know to be a JS developer")
+
+us10 = UserSkill.create(user: u1, skill: s5, description: "This course is better than watching the Great British Bake Off.")
+UserSkill.create(user: u1, skill: s5, description: "Advanced Baking Course feat. Souffles")
+
+us11 = UserSkill.create(user: u3, skill: s6, description: "You might be good at shavasana now, but you'll be good at it all after you finish this course!")
+UserSkill.create(user: u1, skill: s6, description: "Chair Yoga - Relaxing at Work and Improving Your Posture")
+
+us12 = UserSkill.create(user: u1, skill: s7, description: "Put your best foot forward by learning how to step up your resume.")
+us12 = UserSkill.create(user: u4, skill: s7, description: "Job searching overseas? Learn how to write a top-notch CV.")
+
+us13 = UserSkill.create(user: u4, skill: s8, description: "Learn how to become a billionaire in 5 easy steps")
+us16 = UserSkill.create(user: u3, skill: s8, description: "Get your finances in order!")
+us6 = UserSkill.create(user: u3, skill: s8, description: "Money and how to grow it from trees")
+
+us14 = UserSkill.create(user: u3, skill: s9, description: "Knit yourself a hat")
+us15 = UserSkill.create(user: u1, skill: s9, description: "Knit a scarf and other things!")
+
+us5 = UserSkill.create(user: u1, skill: s10, description: "You must learn your scales and your arpeggios")
+us8 = UserSkill.create(user: u4, skill: s10, description: "We'll start with Chopsticks and end with Chopin")
+
+us9 = UserSkill.create(user: u1, skill: s11, description: "The limit does not exist to what you will learn in this course!")
+
+us18 = UserSkill.create(user: u4, skill: s12, description: "Cells and stuff....")
+UserSkill.create(user: u4, skill: s12, description: "Dissect an animal just like you did in 9th grade!")
+
+us19 = UserSkill.create(user: u1, skill: s13, description: "Bonjour! Learn some French with me.")
 UserSkill.create(user: u1, skill: s14, description: "Hola! Learn how to speak Spanish with me!")
+UserSkill.create(user: u4, skill: s14, description: "Conversational Spanish for Beginners")
+
+UserSkill.create(user: u4, skill: s15, description: "How to fix everything in your house when it inevitably breaks")
+
+c1 = Course.create(user: u3, user_skill: us1)
+c2 = Course.create(user: u4, user_skill: us1)
+c3 = Course.create(user: u1, user_skill: us2)
+c4 = Course.create(user: u1, user_skill: us3)
+c5 = Course.create(user: u4, user_skill: us6)
+
+Review.create(user_id: 1, rating: 5, content: "WOW Betsy was an amazing teacher! I would take another class from her anytime!")
+Review.create(user_id: 1, rating: 3, content: "The topic is dumb and Betsy is okay")
+Review.create(user_id: 1, rating: 4, content: "I learned so much!")
+Review.create(user_id: 3, rating: 5, content: "Mendy is super smart and enthusiastic. I had a great time learning from him.")
+Review.create(user_id: 3, rating: 4, content: "Mendy was a great teacher but the subject was so hard! I will never be a billionaire!")
+Review.create(user_id: 4, rating: 3, content: "Ed was fine. It was fine.")
+Review.create(user_id: 4, rating: 5, content: "Ed is an international treasure. Taking any course from him will change your life.")

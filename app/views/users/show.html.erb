@@ -2,10 +2,43 @@
   <% if current_user == @user %>
     <span class="badge badge-success" style="font-size: 0.4em;"> Your Profile </span>
   <% end %>
-</h2>
+</h2><hr><br>
 
 <%if @user.teacher == true%>
 <h3>Courses <%= @user.name %> is Teaching:</h3>
+
+<div class="row">
+
+<%@user.user_skills.sort_by { |uskill| uskill.skill.category.name}.each do |us|%>
+<div class="col-sm-3" style="margin-bottom: 1.2rem;">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%=us.skill.name%></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%=us.skill.category.name%></h6>
+      <% if us.description %>
+        <p class="card-text" style="min-height: 6rem;"><%= us.description %></p>
+      <% end %>
+      <% if @user == current_user %>
+          <div class="card-link" style="margin-bottom: 1.2rem;">
+            <div style="padding: 10px 5px 0px 5px;">
+              <a href="<%=edit_user_skill_path(us)%>" class="btn btn-outline-primary">Edit This Skill</a>
+            </div>
+            <div style="padding: 5px 5px 0px 5px;">
+              <%= form_tag user_skill_path(us), method: :delete do %>
+                <%= submit_tag "Delete This Skill", class: "btn btn-outline-dark"  %>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%end%>
+
+</div>
+
+<% if 1==0 %>
+
 <ul>
   <%@user.user_skills.sort_by { |uskill| uskill.skill.category.name}.each do |us|%>
     <li><strong><%=us.skill.name_and_category%></strong><br>
@@ -24,6 +57,9 @@
     <% end %>
   <%end %>
 </ul>
+<% end %>
+
+
   <%if @user == current_user %>
     <%=link_to "Edit Your Teacher Profile", teacher_edit_path(@user), class: "btn btn-success"%><br></br>
   <% end %>
@@ -40,6 +76,7 @@
 <p>Average Rating for <%=@user.name%>: <%=@user.average_rating%></p>
 <%end%>
 
+<br><hr><br>
 <%if @user.student == true %>
 <h3>Courses <%= @user.name %> is Taking:</h3>
 
@@ -54,12 +91,55 @@
   <% else %>
 
     <%if @user == current_user %>
+      You are currently enrolled in:<br>
+    <% else %>
+      <%= @user.name %> is  currently enrolled in:<br>
+    <% end %>
+
+
+  <div class="row">
+
+    <% @courses.each do |course| %>
+    <div class="col-sm-3" style="margin-bottom: 1.2rem;">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to course.user_skill.skill.name, course.user_skill %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= link_to course.teacher.name, course.teacher%></h6>
+          <% if @user == current_user %>
+              <div class="card-link" style="margin-bottom: 1.2rem;">
+                <div style="padding: 10px 5px 0px 5px;">
+                  <%flash[:teacher] = [course.teacher.id, course.user_skill.skill.name]%>
+                  <a href="<%=new_review_path%>" class="btn btn-outline-primary">Add a Review for <%=course.teacher.name%></a>
+                </div>
+                <div style="padding: 5px 5px 0px 5px;">
+                  <%= form_tag course_path(course), method: :delete do %>
+                    <%= submit_tag "Unenroll from this Course", class: "btn btn-outline-dark"  %>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%end%>
+
+  </div>
+
+
+
+
+
+
+
+
+    <%if @user == current_user %>
       <ul>
         <% @courses.each do |course| %>
-        <li>You are currently enrolled in <%= link_to course.user_skill.skill.name, course.user_skill %> with <%= link_to course.teacher.name, course.teacher%> || <%= form_tag course_path(course), method: :delete do %>
-            <%= submit_tag "Unenroll from this Course" %> <%flash[:teacher] = [course.teacher.id, course.user_skill.skill.name]%>
-            <%=link_to "Add a Review for #{course.teacher.name}", new_review_path %>
-          <% end %></li><br>
+        <li>You are currently enrolled in <%= link_to course.user_skill.skill.name, course.user_skill %> with <%= link_to course.teacher.name, course.teacher%> ||  <%= form_tag course_path(course), method: :delete do %>
+            <%= submit_tag "Unenroll from this Course" %>
+            <% end %>
+            <%flash[:teacher] = [course.teacher.id, course.user_skill.skill.name]%>
+            <%=link_to "Add a Review for #{course.teacher.name}", new_review_path %></li><br>
         <% end %>
       </ul>
 

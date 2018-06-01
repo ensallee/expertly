@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
       redirect_to @user
     else
       flash[:errors] = @review.errors.full_messages
-      redirect_to new_error_path
+      redirect_to new_review_path
     end
   end
 
